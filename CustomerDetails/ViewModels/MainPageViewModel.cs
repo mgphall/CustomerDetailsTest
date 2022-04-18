@@ -1,9 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using CustomerDetails.Core;
-using CustomerDetails.Provider;
+using CustomerDetails.Core; 
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using CustomerDetails.Providers.Provider;
 
 namespace CustomerDetails.ViewModels;
 

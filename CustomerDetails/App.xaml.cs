@@ -2,7 +2,7 @@
 using CustomerDetails.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
-using CustomerDetails.Provider;
+using CustomerDetails.Providers.Provider;
 
 namespace CustomerDetails
 {

@@ -1,10 +1,7 @@
 ﻿using CustomerDetails.Core;
 using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
 
-namespace CustomerDetails.Provider
+namespace CustomerDetails.Providers.Provider
 {
     public class GetAllPersonsProvider : IGetAllPersonsProvider
     {

@@ -1,5 +1,5 @@
 ﻿
-namespace CustomerDetails.Helpers;
+namespace CustomerDetails.Providers.Helpers;
 
     internal static class Helpers
     {
