@@ -18,22 +18,16 @@ namespace CustomerDetails.Provider
         {
             var path = $"{Helpers.Helpers.Uri}/api/Person";
 
-            string json = JsonConvert.SerializeObject(person);
+            var json = JsonConvert.SerializeObject(person);
 
-            StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+            var httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
 
             var response = await _httpClient.PostAsync(path, httpContent);
 
-            string responseBody = await response.Content.ReadAsStringAsync();
-            person = JsonConvert.DeserializeObject<Person>(responseBody);
+            var responseBody = await response.Content.ReadAsStringAsync();
 
-            return person;
+            return JsonConvert.DeserializeObject<Person>(responseBody); ;
         }
     }
     
 }
-    public interface IAddPersonsProvider
-    {
-        Task<Person> PostAsync(Person person);
-    }
-

@@ -25,16 +25,11 @@ namespace CustomerDetails.Provider
             HttpResponseMessage response = await _httpClient.GetAsync(path);
             if (response.IsSuccessStatusCode)
             {
-                string responseBody = await response.Content.ReadAsStringAsync();
+                var responseBody = await response.Content.ReadAsStringAsync();
                 profession = JsonConvert.DeserializeObject<List<Profession>>(responseBody);
             }
 
             return profession;
         }
-    }
-
-    public interface IGetProfessionProvider
-    {
-        Task<List<Profession>> GetProductAsync();
     }
 }

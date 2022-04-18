@@ -18,7 +18,6 @@
 
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0"  >
-            <Button  Content="Test Data" Width="50" Height="50"  Command="{Binding GetApplicationData}" />
             <ListBox  x:Name="listBox"  ItemsSource="{Binding Persons}" SelectedItem="{Binding SelectedPerson}"    >
                 <ListBox.ItemTemplate>
                     <DataTemplate>

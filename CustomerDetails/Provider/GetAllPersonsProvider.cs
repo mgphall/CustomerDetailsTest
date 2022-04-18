@@ -22,6 +22,7 @@ namespace CustomerDetails.Provider
             var path = $"{Helpers.Helpers.Uri}/api/Person";
 
             var response = await _httpClient.GetAsync(path);
+
             if (response.IsSuccessStatusCode)
             {
                 string responseBody = await response.Content.ReadAsStringAsync();
@@ -30,10 +31,5 @@ namespace CustomerDetails.Provider
 
             return person;
         }
-    }
-
-    public interface IGetAllPersonsProvider
-    {
-        Task<IList<Person>> GetAsync();
     }
 }

@@ -9,14 +9,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Xunit;
 
-namespace CustomerDetails.Tests
+namespace CustomerDetails.Tests.HandlerTests
 {
     public class AddPersonsQueryHandlerTests
     {
         public AddPersonsQueryHandlerTests()
         {
             var _contextOptions = new DbContextOptionsBuilder<AppDbContext>()
-                .UseInMemoryDatabase("testDB")
+                .UseInMemoryDatabase("testDB" + DateTime.Now.Ticks)
                 .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning))
                 .Options;
             
@@ -28,11 +28,13 @@ namespace CustomerDetails.Tests
 
         }
 
+        
         public AppDbContext Context { get; set; }
 
         [Fact]
         public async Task AddPersonsQueryHandler_DeletePerson_SuccessAsync()
         {
+            Context.Database.EnsureDeletedAsync();
             var handler = new AddPersonsQueryHandler(Context);
 
             var pro = new Profession() { Id = Guid.NewGuid(), Title = "The boss" };

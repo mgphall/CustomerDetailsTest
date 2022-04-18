@@ -16,7 +16,7 @@ namespace CustomerDetails.Tests
         public UpdatePersonsQueryHandlerTests()
         {
             var _contextOptions = new DbContextOptionsBuilder<AppDbContext>()
-                .UseInMemoryDatabase("testDB")
+                .UseInMemoryDatabase("testDB" + DateTime.Now.Ticks)
                 .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning))
                 .Options;
             
@@ -33,6 +33,7 @@ namespace CustomerDetails.Tests
         [Fact]
         public async Task UpdatedPersonsQueryHandler_UpdatePerson_SuccessAsync()
         {
+            Context.Database.EnsureDeletedAsync();
             var handler = new UpdatePersonsQueryHandler(Context);
 
             var pro = new Profession() { Id = Guid.NewGuid(), Title = "The boss" };

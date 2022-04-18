@@ -17,16 +17,14 @@ namespace CustomerDetails.Tests
         public GetAllPersonsQueryTests()
         {
             var _contextOptions = new DbContextOptionsBuilder<AppDbContext>()
-                .UseInMemoryDatabase("testDB")
+                .UseInMemoryDatabase("testDB" + DateTime.Now.Ticks)
                 .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning))
                 .Options;
             
             
               Context = new AppDbContext(_contextOptions);
-
-              Context.Database.EnsureDeleted();
-              Context.Database.EnsureCreated();
-
+               Context.Database.EnsureDeletedAsync();
+               Context.Database.EnsureCreatedAsync();
         }
 
         public AppDbContext Context { get; set; }
@@ -34,6 +32,8 @@ namespace CustomerDetails.Tests
         [Fact]
         public async Task AddPersonsQueryHandler_DeletePerson_SuccessAsync()
         {
+         
+           await Context.SaveChangesAsync();
             var handler = new GetAllPersonsQueryHandler(Context);
 
             var pro = new Profession() { Id = Guid.NewGuid(), Title = "The boss" };

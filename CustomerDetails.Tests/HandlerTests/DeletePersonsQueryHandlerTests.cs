@@ -9,14 +9,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Xunit;
 
-namespace CustomerDetails.Tests
+namespace CustomerDetails.Tests.HandlerTests
 {
     public class DeletePersonsQueryHandlerTests
     {
         public DeletePersonsQueryHandlerTests()
         {
             var _contextOptions = new DbContextOptionsBuilder<AppDbContext>()
-                .UseInMemoryDatabase("testDB")
+                .UseInMemoryDatabase("testDB" + DateTime.Now.Ticks)
                 .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning))
                 .Options;
             
@@ -33,6 +33,7 @@ namespace CustomerDetails.Tests
         [Fact]
         public async Task DeletePersonsQueryHandler_RemovePerson_SuccessAsync()
         {
+            Context.Database.EnsureDeletedAsync();
             var handler = new DeletePersonsQueryHandler(Context);
             var id = Guid.NewGuid();
             var pro = new Profession() { Id = Guid.NewGuid(), Title = "The boss" };

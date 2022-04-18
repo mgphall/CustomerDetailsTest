@@ -1,5 +1,5 @@
 ﻿using CustomerDetails.Core;
-using Newtonsoft.Json; 
+using Newtonsoft.Json;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -18,22 +18,14 @@ namespace CustomerDetails.Provider
         {
             var path = $"{Helpers.Helpers.Uri}/api/Person" + $"?id={person.Id}";
 
-            string json = JsonConvert.SerializeObject(person.Id);
+            var json = JsonConvert.SerializeObject(person.Id);
 
-            StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+            var response = await _httpClient.DeleteAsync(path);
 
-           var response = await _httpClient.DeleteAsync(path);
-
-            string responseBody = await response.Content.ReadAsStringAsync();
-        
+            var responseBody = await response.Content.ReadAsStringAsync();
 
             return JsonConvert.DeserializeObject<bool>(responseBody);
         }
     }
-    
-}
-    public interface IDeletePersonsProvider
-{
-        Task<bool> DeleteAsync(Person person);
-    }
 
+}

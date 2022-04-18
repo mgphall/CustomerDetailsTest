@@ -60,21 +60,7 @@ namespace CustomerDetails.Tests.ControllerTests
             var okResult = result.Result;
             Assert.IsType<OkObjectResult>(okResult);
         }
-
-        [Fact]
-        public async Task PersonController_DeletePersonsQuery_ReturnsNotfound()
-        {
-            var test = new PersonController(_mediator.Object, null);
-
-            _mediator.Setup(x => x.Send(It.IsAny<DeletePersonsQuery>(), CancellationToken.None)).ReturnsAsync(false);
-
-            var result = test.DeleteAsync(It.IsAny<Guid>());
-
-            Assert.NotNull(result);
-            var notFound = result.Result;
-            Assert.IsType<NotFoundObjectResult>(notFound);
-        }
-
+ 
         [Fact]
         public async Task PersonController_AddPersonsQuery_ReturnsOk()
         {
