@@ -3,6 +3,6 @@ namespace CustomerDetails.Providers.Helpers;
 
     internal static class Helpers
     {
-        internal static string Uri { get; } = @"https://localhost:7185";
+        internal static string Uri => @"https://localhost:7185";
     }
 
