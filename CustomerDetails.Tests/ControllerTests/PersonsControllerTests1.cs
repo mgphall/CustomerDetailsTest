@@ -40,11 +40,10 @@ namespace CustomerDetails.Tests.ControllerTests
 
             _mediator.Setup(x => x.Send(It.IsAny<GetAllPersonsQuery>(), CancellationToken.None)).ReturnsAsync(items);
 
-            var result =test.GetAsync();
+            var result = await test.GetAsync();
 
-            Assert.NotNull(result);
-            var okResult = result.Result;
-            Assert.IsType<OkObjectResult>(okResult);
+            Assert.NotNull(result); 
+            Assert.IsType<OkObjectResult>(result);
         }
 
         [Fact]
@@ -54,11 +53,11 @@ namespace CustomerDetails.Tests.ControllerTests
             
             _mediator.Setup(x => x.Send(It.IsAny<DeletePersonsQuery>(), CancellationToken.None)).ReturnsAsync(true);
 
-            var result = test.DeleteAsync(It.IsAny<Guid>());
+            var result = await test.DeleteAsync(It.IsAny<Guid>());
 
             Assert.NotNull(result);
-            var okResult = result.Result;
-            Assert.IsType<OkObjectResult>(okResult);
+          
+            Assert.IsType<OkObjectResult>(result);
         }
  
         [Fact]
@@ -68,11 +67,11 @@ namespace CustomerDetails.Tests.ControllerTests
 
             _mediator.Setup(x => x.Send(It.IsAny<AddPersonsQuery>(), CancellationToken.None)).ReturnsAsync(It.IsAny<Person>());
 
-            var result = test.AddAsync(It.IsAny<Person>());
+            var result = await test.AddAsync(It.IsAny<Person>());
 
             Assert.NotNull(result);
-            var notFound = result.Result;
-            Assert.IsType<OkObjectResult>(notFound);
+       
+            Assert.IsType<OkObjectResult>(result);
         }
 
         [Fact]
@@ -82,11 +81,11 @@ namespace CustomerDetails.Tests.ControllerTests
 
             _mediator.Setup(x => x.Send(It.IsAny<UpdatePersonsQuery>(), CancellationToken.None)).ReturnsAsync(true);
 
-            var result = test.UpdateAsync(It.IsAny<Person>());
+            var result = await test.UpdateAsync(It.IsAny<Person>());
 
             Assert.NotNull(result);
-            var okResult = result.Result;
-            Assert.IsType<OkObjectResult>(okResult);
+          
+            Assert.IsType<OkObjectResult>(result);
         }
 
         [Fact]
@@ -96,11 +95,11 @@ namespace CustomerDetails.Tests.ControllerTests
 
             _mediator.Setup(x => x.Send(It.IsAny<UpdatePersonsQuery>(), CancellationToken.None)).ReturnsAsync(false);
 
-            var result = test.UpdateAsync(It.IsAny<Person>());
+            var result = await test.UpdateAsync(It.IsAny<Person>());
 
             Assert.NotNull(result);
-            var okResult = result.Result;
-            Assert.IsType<NotFoundObjectResult>(okResult);
+            
+            Assert.IsType<NotFoundObjectResult>(result);
         }
     }
 }
