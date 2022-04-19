@@ -32,12 +32,17 @@
         </StackPanel>
         <StackPanel Grid.Column="1" >
             <Label Content="{Binding SelectedPerson.DateOfBirth, Converter={StaticResource CurrentAgeConverter}}"/>
+            <Label Content="First Name" Style="{StaticResource  MahApps.Styles.Label}" Margin="0,2,0,0"/>
             <TextBox Text="{Binding SelectedPerson.FirstName}"/>
-            <TextBox Text="{Binding SelectedPerson.LastName}"/> 
-
+            <Label Content="Last Name" Style="{StaticResource  MahApps.Styles.Label}" Margin="0,2,0,0"/>
+            <TextBox Text="{Binding SelectedPerson.LastName}"/>
+            <Label Content="Date of Birth" Style="{StaticResource  MahApps.Styles.Label}" Margin="0,2,0,0"/>
             <DatePicker   SelectedDate="{Binding SelectedPerson.DateOfBirth}"/>
+
+            <Label Content="Job title" Style="{StaticResource  MahApps.Styles.Label}" Margin="0,2,0,0"/>
             <mah:SplitButton DisplayMemberPath="Title" SelectedItem="{Binding SelectedPerson.Profession}" SelectedValue="{Binding SelectedPerson.Profession.Id, Mode=TwoWay}"  SelectedValuePath="Id"  ItemsSource="{Binding Profession}" />
 
+            <Label Content="Actions" Style="{StaticResource  MahApps.Styles.Label}" Margin="0,2,0,0"/>
             <Button Content="Add" Command="{Binding AddSelectedPerson}"/>
             <Button Content="Update" Command="{Binding UpdateSelectedPerson}"/>
             <Button Content="Delete" Command="{Binding DeleteSelectedPerson}"/>
