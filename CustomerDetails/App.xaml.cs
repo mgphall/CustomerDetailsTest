@@ -3,6 +3,7 @@ using CustomerDetails.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
 using CustomerDetails.Providers.Provider;
+using MahApps.Metro.Controls.Dialogs;
 
 namespace CustomerDetails
 {
@@ -26,6 +27,7 @@ namespace CustomerDetails
                     .AddSingleton<IAddPersonsProvider, AddPersonsProvider>()
                     .AddSingleton<IUpdatePersonsProvider, UpdatePersonsProvider>()
                     .AddSingleton<IDeletePersonsProvider, DeletePersonsProvider>()
+                    .AddSingleton<IDialogCoordinator, DialogCoordinator>()
                     .AddTransient<MainPageViewModel>()
                     //WPF
                     .AddSingleton<MainViewModel>()

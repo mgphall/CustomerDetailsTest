@@ -5,6 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:converters="clr-namespace:CustomerDetails.Converters"
+             xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+             Dialog:DialogParticipation.Register="{Binding}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
@@ -37,7 +39,7 @@
             <Label Content="Last Name" Style="{StaticResource  MahApps.Styles.Label}" Margin="0,2,0,0"/>
             <TextBox Text="{Binding SelectedPerson.LastName}"/>
             <Label Content="Date of Birth" Style="{StaticResource  MahApps.Styles.Label}" Margin="0,2,0,0"/>
-            <DatePicker   SelectedDate="{Binding SelectedPerson.DateOfBirth}"/>
+            <DatePicker SelectedDate="{Binding SelectedPerson.DateOfBirth}"/>
 
             <Label Content="Job title" Style="{StaticResource  MahApps.Styles.Label}" Margin="0,2,0,0"/>
             <mah:SplitButton DisplayMemberPath="Title" SelectedItem="{Binding SelectedPerson.Profession}" SelectedValue="{Binding SelectedPerson.Profession.Id, Mode=TwoWay}"  SelectedValuePath="Id"  ItemsSource="{Binding Profession}" />
@@ -48,5 +50,8 @@
             <Button Content="Delete" Command="{Binding DeleteSelectedPerson}"/>
             <Button Content="Reset data"  Command="{Binding GetApplicationData}" />
         </StackPanel>
+       
     </Grid>
+   
+   
 </UserControl>
